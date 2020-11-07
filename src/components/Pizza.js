@@ -118,6 +118,7 @@ export default function Pizza(props){
                     <input
                     type="checkbox"
                     name="pepperoni"
+                    data-cy='pepperoni'
                     checked={pizza.pepperoni}
                     onChange={onInputChange}
                     />
@@ -125,6 +126,7 @@ export default function Pizza(props){
                     <input
                     type="checkbox"
                     name="sausage"
+                    data-cy='sausage'
                     checked={pizza.sausage}
                     onChange={onInputChange}
                     />
@@ -132,6 +134,7 @@ export default function Pizza(props){
                     <input
                     type="checkbox"
                     name="onions"
+                    data-cy='onions'
                     checked={pizza.onions}
                     onChange={onInputChange}
                     />
@@ -139,6 +142,7 @@ export default function Pizza(props){
                     <input
                     type="checkbox"
                     name="mushroom"
+                    data-cy='mushrooms'
                     checked={pizza.mushroom}
                     onChange={onInputChange}
                     />
@@ -148,7 +152,7 @@ export default function Pizza(props){
                     <textarea id='instructions' name='instructions' data-cy='instructions' value={pizza.instructions} onChange={onInputChange}>
                     </textarea>
                 </div>
-                <button disabled={isButtonDisabled} type="submit">
+                <button disabled={isButtonDisabled} data-cy='submitBtn' type="submit">
                     Add to Order
                 </button>
             </form>

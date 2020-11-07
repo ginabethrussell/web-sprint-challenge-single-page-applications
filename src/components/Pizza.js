@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const initialPizza = {
     name: '',
@@ -13,11 +14,12 @@ const initialPizza = {
 
 
 export default function Pizza(props){
-    const {placeOrder} = props;
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [errors, setErrors] = useState(initialPizza);
     const[pizza, setPizza] = useState(initialPizza);
+    
+
 
     const formSchema = yup.object().shape({
         name: yup.string().min(2, "name must be more than 2 letters"),
@@ -50,17 +52,23 @@ export default function Pizza(props){
 
     const submitOrder =(e)=> {
         e.preventDefault();
-        // console.log(pizza);
-        placeOrder(pizza);
-        setPizza({
-            name: '',
-            size: '',
-            pepperoni: '',
-            sausage: '',
-            onions: '',
-            mushroom: '',
-            instructions: ''}
-        )
+        axios
+        .post("https://reqres.in/api/users", pizza)
+        .then(response => {
+            console.log(response.data);
+            setPizza({
+                name: '',
+                size: '',
+                pepperoni: '',
+                sausage: '',
+                onions: '',
+                mushroom: '',
+                instructions: ''}
+            )
+        })
+      .catch(err => {
+            console.log(err)
+      });
         setButtonDisabled(true);
     }
     
